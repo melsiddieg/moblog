@@ -1,0 +1,10 @@
+---
+title: "Demo Blog"
+author: "Mohammed Abdallah"
+---
+
+```{r}
+x <- 1:50
+y <- x^2
+plot(x,y,col='darkgreen',pch=20)
+```
