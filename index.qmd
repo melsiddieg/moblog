@@ -1,5 +1,5 @@
 ---
-title: "myblog"
+title: "A blog about Data Science, AI, and Healthcare topics"
 listing:
   contents: posts
   sort: "date desc"

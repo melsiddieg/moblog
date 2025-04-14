@@ -15,7 +15,7 @@ website:
 format:
   html:
     theme:
-      - default
+      - darkly
       - brand
     css: styles.css
 
