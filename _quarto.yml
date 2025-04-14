@@ -8,14 +8,14 @@ website:
     right:
       - about.qmd
       - icon: github
-        href: https://github.com/
-      - icon: twitter
-        href: https://twitter.com
+        href: https://github.com/melsiddieg
+      - icon: linkedin
+        href: https://linkedin.com
 
 format:
   html:
     theme:
-      - flatly
+      - cosmo
       - brand
     css: styles.css
 
