@@ -1,6 +1,7 @@
 ---
 title: "Demo Blog"
 author: "Mohammed Abdallah"
+categories: [R, Visualizaion]
 ---
 
 ## Ploting in R
