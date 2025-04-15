@@ -1,5 +1,6 @@
 ---
-title: "A blog about Data Science, AI, and Healthcare topics"
+title: "A blog about Data Science, Data Engineering, AI, and Healthcare Data Management"
+
 listing:
   contents: posts
   sort: "date desc"

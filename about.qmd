@@ -1,6 +1,6 @@
 ---
 title: "About"
-image: profile.jpg
+image: moa.jpg
 about:
   template: jolla
   links:
@@ -13,7 +13,8 @@ about:
     - icon: github
       text: Github
       href: https://github.com
-
 ---
 
-About this blog
+Welcome to our blog—a dedicated space for exploring the powerful intersection of **data science, data engineering, and artificial intelligence** in the healthcare world. Here, we dive deep into real-world applications, sharing insights and practical guidance on working with **clinical data models (CDMs)** like OMOP and i2b2. Whether you're cleaning massive datasets with **Apache Spark**, optimizing queries with **SQL (DuckDB, PostgreSQL, Azure SQL Server)**, or building machine learning pipelines in **Python and R**, this blog is your go-to resource for turning complex healthcare data into actionable knowledge.
+
+We believe that great analytics starts with great engineering. That’s why we focus on the foundations—**efficient data pipelines, interoperable file formats like Apache Arrow**, and scalable architectures that handle messy, real-world healthcare data. From wrangling EHRs to powering decision support systems with AI, we cover both the backend engineering and front-line analytics that make modern health data workflows possible. Whether you're a researcher, developer, or data enthusiast, join us as we build, analyze, and innovate in this dynamic field.

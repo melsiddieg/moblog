@@ -4,7 +4,7 @@
     "href": "about.html",
     "title": "About",
     "section": "",
-    "text": "About this blog"
+    "text": "Welcome to our blog—a dedicated space for exploring the powerful intersection of data science, data engineering, and artificial intelligence in the healthcare world. Here, we dive deep into real-world applications, sharing insights and practical guidance on working with clinical data models (CDMs) like OMOP and i2b2. Whether you’re cleaning massive datasets with Apache Spark, optimizing queries with SQL (DuckDB, PostgreSQL, Azure SQL Server), or building machine learning pipelines in Python and R, this blog is your go-to resource for turning complex healthcare data into actionable knowledge.\nWe believe that great analytics starts with great engineering. That’s why we focus on the foundations—efficient data pipelines, interoperable file formats like Apache Arrow, and scalable architectures that handle messy, real-world healthcare data. From wrangling EHRs to powering decision support systems with AI, we cover both the backend engineering and front-line analytics that make modern health data workflows possible. Whether you’re a researcher, developer, or data enthusiast, join us as we build, analyze, and innovate in this dynamic field."
   },
   {
     "objectID": "posts/first-blog/index.html",
@@ -86,7 +86,7 @@
   {
     "objectID": "index.html",
     "href": "index.html",
-    "title": "A blog about Data Science, AI, and Healthcare topics",
+    "title": "A blog about Data Science, Data Engineering, AI, and Healthcare Data Management",
     "section": "",
     "text": "Efficient Data wrangling in R\n\n\n\nbig data\n\nR\n\npolars\n\nduckdb\n\napache arrow\n\n\n\n\n\n\n\n\n\nMohammed Abdallah\n\n\n\n\n\n\n\n\n\n\n\n\nDemo Blog\n\n\n\nR\n\nVisualizaion\n\n\n\n\n\n\n\n\n\nMohammed Abdallah\n\n\n\n\n\n\n\n\n\n\n\n\nPost With Code\n\n\n\nnews\n\ncode\n\nanalysis\n\n\n\n\n\n\n\n\n\nApr 13, 2025\n\n\nHarlow Malloc\n\n\n\n\n\n\n\n\n\n\n\n\nWelcome To My Blog\n\n\n\nnews\n\n\n\n\n\n\n\n\n\nApr 10, 2025\n\n\nTristan O’Malley\n\n\n\n\n\nNo matching items"
   }
