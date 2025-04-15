@@ -8,7 +8,9 @@ categories: [big data, polars, duckdb,apache arrow]
 
 # Advanced Techniques for Efficient Large Data Handling in R
 
-In the era of big data, R users often find themselves grappling with datasets that push the limits of their hardware. Traditional approaches using packages like tidyverse or data.table can struggle when faced with truly massive datasets. But fear not! A new generation of tools and techniques is emerging, offering R users powerful ways to handle large data efficiently. In this post, we'll explore some of these advanced techniques, focusing on three key players in the R ecosystem: Arrow, Polars, and DuckDB.
+In the era of big data, R users often find themselves grappling with datasets that push the limits of their hardware.
+
+Traditional approaches using packages like tidyverse or data.table can struggle when faced with truly massive datasets. But fear not! A new generation of tools and techniques is emerging, offering R users powerful ways to handle large data efficiently. In this post, we'll explore some of these advanced techniques, focusing on three key players in the R ecosystem: Arrow, Polars, and DuckDB.
 
 ## The Power of Efficient File Formats and Partitioning
 
