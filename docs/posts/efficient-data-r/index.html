@@ -6,8 +6,9 @@
 
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 
+<meta name="author" content="Mohammed Abdallah">
 
-<title>A blog about Data Science, AI, and Healthcare topics – Mofeed</title>
+<title>Efficient Data wrangling in R – Mofeed</title>
 <style>
 code{white-space: pre-wrap;}
 span.smallcaps{font-variant: small-caps;}
@@ -23,25 +24,23 @@ ul.task-list li input[type="checkbox"] {
 </style>
 
 
-<script src="site_libs/quarto-nav/quarto-nav.js"></script>
-<script src="site_libs/quarto-nav/headroom.min.js"></script>
-<script src="site_libs/clipboard/clipboard.min.js"></script>
-<script src="site_libs/quarto-search/autocomplete.umd.js"></script>
-<script src="site_libs/quarto-search/fuse.min.js"></script>
-<script src="site_libs/quarto-search/quarto-search.js"></script>
-<meta name="quarto:offset" content="./">
-<script src="site_libs/quarto-listing/list.min.js"></script>
-<script src="site_libs/quarto-listing/quarto-listing.js"></script>
-<script src="site_libs/quarto-html/quarto.js" type="module"></script>
-<script src="site_libs/quarto-html/tabsets/tabsets.js" type="module"></script>
-<script src="site_libs/quarto-html/popper.min.js"></script>
-<script src="site_libs/quarto-html/tippy.umd.min.js"></script>
-<script src="site_libs/quarto-html/anchor.min.js"></script>
-<link href="site_libs/quarto-html/tippy.css" rel="stylesheet">
-<link href="site_libs/quarto-html/quarto-syntax-highlighting-dark-7271f29f9498218151f3120baddb7363.css" rel="stylesheet" id="quarto-text-highlighting-styles">
-<script src="site_libs/bootstrap/bootstrap.min.js"></script>
-<link href="site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
-<link href="site_libs/bootstrap/bootstrap-2c7005ad1bc8d1d53a77280412ffd690.min.css" rel="stylesheet" append-hash="true" id="quarto-bootstrap" data-mode="dark">
+<script src="../../site_libs/quarto-nav/quarto-nav.js"></script>
+<script src="../../site_libs/quarto-nav/headroom.min.js"></script>
+<script src="../../site_libs/clipboard/clipboard.min.js"></script>
+<script src="../../site_libs/quarto-search/autocomplete.umd.js"></script>
+<script src="../../site_libs/quarto-search/fuse.min.js"></script>
+<script src="../../site_libs/quarto-search/quarto-search.js"></script>
+<meta name="quarto:offset" content="../../">
+<script src="../../site_libs/quarto-html/quarto.js" type="module"></script>
+<script src="../../site_libs/quarto-html/tabsets/tabsets.js" type="module"></script>
+<script src="../../site_libs/quarto-html/popper.min.js"></script>
+<script src="../../site_libs/quarto-html/tippy.umd.min.js"></script>
+<script src="../../site_libs/quarto-html/anchor.min.js"></script>
+<link href="../../site_libs/quarto-html/tippy.css" rel="stylesheet">
+<link href="../../site_libs/quarto-html/quarto-syntax-highlighting-dark-7271f29f9498218151f3120baddb7363.css" rel="stylesheet" id="quarto-text-highlighting-styles">
+<script src="../../site_libs/bootstrap/bootstrap.min.js"></script>
+<link href="../../site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
+<link href="../../site_libs/bootstrap/bootstrap-2c7005ad1bc8d1d53a77280412ffd690.min.css" rel="stylesheet" append-hash="true" id="quarto-bootstrap" data-mode="dark">
 <script id="quarto-search-options" type="application/json">{
   "location": "navbar",
   "copy-button": false,
@@ -69,77 +68,19 @@ ul.task-list li input[type="checkbox"] {
     "search-label": "Search"
   }
 }</script>
-<script>
 
-  window.document.addEventListener("DOMContentLoaded", function (_event) {
-    const listingTargetEl = window.document.querySelector('#listing-listing .list');
-    if (!listingTargetEl) {
-      // No listing discovered, do not attach.
-      return; 
-    }
 
-    const options = {
-      valueNames: ['listing-date','listing-title','listing-author','listing-image','listing-description','listing-categories',{ data: ['index'] },{ data: ['categories'] },{ data: ['listing-date-sort'] },{ data: ['listing-file-modified-sort'] }],
-      
-      searchColumns: ["listing-date","listing-title","listing-author","listing-image","listing-description","listing-categories"],
-    };
-
-    window['quarto-listings'] = window['quarto-listings'] || {};
-    window['quarto-listings']['listing-listing'] = new List('listing-listing', options);
-
-    if (window['quarto-listing-loaded']) {
-      window['quarto-listing-loaded']();
-    }
-  });
-
-  window.addEventListener('hashchange',() => {
-    if (window['quarto-listing-loaded']) {
-      window['quarto-listing-loaded']();
-    }
-  })
-  </script>
-
-  <script src="https://cdnjs.cloudflare.com/polyfill/v3/polyfill.min.js?features=es6"></script>
-  <script src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-chtml-full.js" type="text/javascript"></script>
-
-<script type="text/javascript">
-const typesetMath = (el) => {
-  if (window.MathJax) {
-    // MathJax Typeset
-    window.MathJax.typeset([el]);
-  } else if (window.katex) {
-    // KaTeX Render
-    var mathElements = el.getElementsByClassName("math");
-    var macros = [];
-    for (var i = 0; i < mathElements.length; i++) {
-      var texText = mathElements[i].firstChild;
-      if (mathElements[i].tagName == "SPAN") {
-        window.katex.render(texText.data, mathElements[i], {
-          displayMode: mathElements[i].classList.contains('display'),
-          throwOnError: false,
-          macros: macros,
-          fleqn: false
-        });
-      }
-    }
-  }
-}
-window.Quarto = {
-  typesetMath
-};
-</script>
-
-<link rel="stylesheet" href="styles.css">
+<link rel="stylesheet" href="../../styles.css">
 </head>
 
-<body class="nav-fixed quarto-light">
+<body class="nav-fixed fullcontent quarto-light">
 
 <div id="quarto-search-results"></div>
   <header id="quarto-header" class="headroom fixed-top quarto-banner">
     <nav class="navbar navbar-expand-lg " data-bs-theme="dark">
       <div class="navbar-container container-fluid">
       <div class="navbar-brand-container mx-auto">
-    <a class="navbar-brand" href="./index.html">
+    <a class="navbar-brand" href="../../index.html">
     <span class="navbar-title">Mofeed</span>
     </a>
   </div>
@@ -150,7 +91,7 @@ window.Quarto = {
           <div class="collapse navbar-collapse" id="navbarCollapse">
             <ul class="navbar-nav navbar-nav-scroll ms-auto">
   <li class="nav-item">
-    <a class="nav-link" href="./about.html"> 
+    <a class="nav-link" href="../../about.html"> 
 <span class="menu-text">About</span></a>
   </li>  
   <li class="nav-item compact">
@@ -173,157 +114,175 @@ window.Quarto = {
 <!-- content -->
 <header id="title-block-header" class="quarto-title-block default page-columns page-full">
   <div class="quarto-title-banner page-columns page-full">
-    <div class="quarto-title column-page-left">
-      <h1 class="title">A blog about Data Science, AI, and Healthcare topics</h1>
+    <div class="quarto-title column-body">
+      <h1 class="title">Efficient Data wrangling in R</h1>
                       </div>
   </div>
     
   
-  <div class="quarto-title-meta column-page-left">
+  <div class="quarto-title-meta">
 
+      <div>
+      <div class="quarto-title-meta-heading">Author</div>
+      <div class="quarto-title-meta-contents">
+               <p>Mohammed Abdallah </p>
+            </div>
+    </div>
       
     
       
     </div>
     
   
-  </header><div id="quarto-content" class="quarto-container page-columns page-rows-contents page-layout-full page-navbar">
+  </header><div id="quarto-content" class="quarto-container page-columns page-rows-contents page-layout-article page-navbar">
 <!-- sidebar -->
 <!-- margin-sidebar -->
-    <div id="quarto-margin-sidebar" class="sidebar margin-sidebar">
-        
-    <h5 class="quarto-listing-category-title">Categories</h5><div class="quarto-listing-category category-default"><div class="category" data-category="">All <span class="quarto-category-count">(4)</span></div><div class="category" data-category="YW5hbHlzaXM=">analysis <span class="quarto-category-count">(1)</span></div><div class="category" data-category="Y29kZQ==">code <span class="quarto-category-count">(1)</span></div><div class="category" data-category="bmV3cw==">news <span class="quarto-category-count">(2)</span></div><div class="category" data-category="Ug==">R <span class="quarto-category-count">(1)</span></div><div class="category" data-category="VmlzdWFsaXphaW9u">Visualizaion <span class="quarto-category-count">(1)</span></div></div></div>
+    
 <!-- main -->
-<main class="content quarto-banner-title-block column-page-left" id="quarto-document-content">
+<main class="content quarto-banner-title-block" id="quarto-document-content">
 
 
 
 
 
+<p><img src="plot2.png" class="img-fluid" alt="Big Data"></p>
+<section id="advanced-techniques-for-efficient-large-data-handling-in-r" class="level1">
+<h1>Advanced Techniques for Efficient Large Data Handling in R</h1>
+<p>In the era of big data, R users often find themselves grappling with datasets that push the limits of their hardware. Traditional approaches using packages like tidyverse or data.table can struggle when faced with truly massive datasets. But fear not! A new generation of tools and techniques is emerging, offering R users powerful ways to handle large data efficiently. In this post, we’ll explore some of these advanced techniques, focusing on three key players in the R ecosystem: Arrow, Polars, and DuckDB.</p>
+<section id="the-power-of-efficient-file-formats-and-partitioning" class="level2">
+<h2 class="anchored" data-anchor-id="the-power-of-efficient-file-formats-and-partitioning">The Power of Efficient File Formats and Partitioning</h2>
+<p>Before diving into specific tools, it’s crucial to understand the importance of efficient file formats and data partitioning.</p>
+<section id="parquet-the-champion-of-big-data" class="level3">
+<h3 class="anchored" data-anchor-id="parquet-the-champion-of-big-data">Parquet: The Champion of Big Data</h3>
+<p>Parquet has become the go-to file format for big data analytics, and for good reason. It’s a columnar storage format that offers excellent compression and supports predicate pushdown, allowing for efficient querying of large datasets. When working with big data in R, converting your data to Parquet can lead to significant performance improvements.</p>
+</section>
+<section id="partitioning-divide-and-conquer" class="level3">
+<h3 class="anchored" data-anchor-id="partitioning-divide-and-conquer">Partitioning: Divide and Conquer</h3>
+<p>Partitioning is a technique that divides large datasets into smaller, more manageable chunks. This approach enables parallel processing and efficient querying. A common partitioning strategy is to split data by date, creating a directory structure like <code>/year=2023/month=06/data.parquet</code>. This allows you to quickly filter data based on time periods without scanning the entire dataset.</p>
+<p>Here’s a quick example of how you can convert a large CSV file to partitioned Parquet using the Arrow package in R:</p>
+<pre><code>library(arrow)
+library(dplyr)
+
+# Read CSV file
+csv_dataset &lt;- open_dataset("large_dataset.csv", format = "csv")
+
+# Define partitioning schema and write to partitioned Parquet
+write_dataset(csv_dataset, 
+              "partitioned_dataset",
+              format = "parquet",
+              partitioning = schema(year = int32(), month = int32()))</code></pre>
+<p>This code reads a large CSV file and writes it as a partitioned Parquet dataset, organized by year and month.</p>
+</section>
+</section>
+<section id="arrow-the-swiss-army-knife-of-big-data" class="level2">
+<h2 class="anchored" data-anchor-id="arrow-the-swiss-army-knife-of-big-data">Arrow: The Swiss Army Knife of Big Data</h2>
+<p>Apache Arrow is a cross-language development platform for in-memory data, providing a standardized columnar memory format. The Arrow package in R brings this power to the R ecosystem.</p>
+<section id="key-features-of-arrow" class="level3">
+<h3 class="anchored" data-anchor-id="key-features-of-arrow">Key Features of Arrow:</h3>
+<ol type="1">
+<li><p><strong>Memory Mapping</strong>: Allows efficient access to data without loading entire datasets into memory.</p></li>
+<li><p><strong>SIMD Operations</strong>: Utilizes CPU’s Single Instruction, Multiple Data capabilities for faster processing.</p></li>
+<li><p><strong>Streaming Execution</strong>: Processes data in chunks, reducing memory footprint.</p>
+<p>Here’s an example of using Arrow to efficiently query a partitioned Parquet dataset:</p></li>
+</ol>
+<pre><code>library(arrow)
+
+# Open partitioned dataset
+dataset &lt;- open_dataset("partitioned_dataset", format = "parquet")
+
+# Efficient querying with partition and predicate pushdown
+result &lt;- dataset %&gt;%
+  filter(year == 2023, month == 6) %&gt;%
+  select(col1, col2) %&gt;%
+  collect()</code></pre>
+<p>This query leverages both partition pruning and predicate pushdown, ensuring that only the necessary data is read and processed.</p>
+</section>
+</section>
+<section id="polars-speed-and-efficiency-in-r" class="level2">
+<h2 class="anchored" data-anchor-id="polars-speed-and-efficiency-in-r">Polars: Speed and Efficiency in R</h2>
+<p>Polars is a lightning-fast DataFrames library implemented in Rust, with bindings available for R. It offers both eager and lazy execution modes, providing flexibility and performance.</p>
+<section id="polars-lazy-execution" class="level3">
+<h3 class="anchored" data-anchor-id="polars-lazy-execution">Polars Lazy Execution:</h3>
+<p>Polars’ lazy execution mode allows for query optimization, potentially leading to significant performance improvements. Here’s an example:</p>
+<pre><code>library(polars)
+
+# Create a lazy DataFrame with streaming enabled
+lazy_df &lt;- pl$lazy_csv_reader("large_dataset.csv", rechunk = FALSE)
+
+# Define operations
+result &lt;- lazy_df$
+  select(pl$col("col1"), pl$col("col2"))$
+  filter(pl$col("col1") &gt; 100)$
+  group_by("col2")$
+  agg(pl$col("col1")$mean())$
+  collect(streaming = TRUE)</code></pre>
+<p>In this example, Polars optimizes the query plan and uses streaming execution to efficiently process the data.</p>
+</section>
+</section>
+<section id="duckdb-sql-power-for-local-data" class="level2">
+<h2 class="anchored" data-anchor-id="duckdb-sql-power-for-local-data">DuckDB: SQL Power for Local Data</h2>
+<p>DuckDB brings the power of a columnar-oriented SQL database to local, serverless environments. It’s particularly well-suited for analytical queries on large datasets.</p>
+<section id="duckdbs-efficiency" class="level3">
+<h3 class="anchored" data-anchor-id="duckdbs-efficiency">DuckDB’s Efficiency:</h3>
+<p>DuckDB optimizes for the entire memory hierarchy, from CPU cache to disk. It uses techniques like vectorized execution and adaptive algorithms to process data efficiently. Here’s an example of using DuckDB to query a partitioned Parquet dataset:</p>
+<pre><code>library(duckdb)
+library(dplyr)
+
+con &lt;- dbConnect(duckdb())
+result &lt;- tbl(con, "parquet_scan('partitioned_dataset/**/*.parquet', 
+                                 hive_partitioning=1)") %&gt;%
+  filter(year == 2023, month == 6) %&gt;%
+  select(col1, col2) %&gt;%
+  collect()
+
+dbDisconnect(con, shutdown = TRUE)</code></pre>
+<p>DuckDB automatically detects the partitioning scheme and uses it for efficient data skipping.</p>
+</section>
+</section>
+<section id="the-importance-of-operation-order" class="level2">
+<h2 class="anchored" data-anchor-id="the-importance-of-operation-order">The Importance of Operation Order</h2>
+<p>When working with large datasets, the order of operations can significantly impact performance, especially in eager evaluation systems. Consider this example using dplyr:</p>
+<pre><code># Less efficient
+df %&gt;%
+  group_by(category) %&gt;%
+  filter(value &gt; 100) %&gt;%
+  summarise(mean_value = mean(value))
+
+# More efficient
+df %&gt;%
+  filter(value &gt; 100) %&gt;%
+  group_by(category) %&gt;%
+  summarise(mean_value = mean(value))</code></pre>
+<p>In general, it’s more efficient to filter data before grouping. However, lazy evaluation systems like Polars lazy and DuckDB can often optimize the query plan regardless of the order you specify operations.</p>
+</section>
+<section id="summary-choosing-the-right-tool" class="level2">
+<h2 class="anchored" data-anchor-id="summary-choosing-the-right-tool">Summary: Choosing the Right Tool</h2>
+<p>Arrow, Polars, and DuckDB each offer unique strengths for handling large datasets in R:</p>
+<ul>
+<li><p><strong>Arrow</strong> excels in memory mapping and SIMD operations.</p></li>
+<li><p><strong>Polars</strong> shines with its lazy evaluation and query optimization.</p></li>
+<li><p><strong>DuckDB</strong> stands out for its adaptive algorithms and SQL engine</p></li>
+</ul>
+</section>
+<section id="takeaways-and-best-practices" class="level2">
+<h2 class="anchored" data-anchor-id="takeaways-and-best-practices">Takeaways and Best Practices</h2>
+<p>When working with large datasets in R, consider these best practices:</p>
+<ol type="1">
+<li><p>Use partitioned Parquet for storing large datasets.</p></li>
+<li><p>Leverage streaming capabilities to reduce memory footprint.</p></li>
+<li><p>Utilize automatic chunking and batch processing when available.</p></li>
+<li><p>Choose partitioning schemes that align with common query patterns.</p></li>
+<li><p>Benchmark different approaches for your specific use case.</p></li>
+<li><p>Pay attention to the order of operations, especially in eager evaluation systems</p></li>
+</ol>
+<p>By employing these advanced techniques and tools, R users can efficiently handle datasets that were once considered too large for local processing. As the R ecosystem continues to evolve, we can expect even more powerful and efficient data handling capabilities in the future.</p>
+<p>Happy data crunching!</p>
 
 
+</section>
+</section>
 
-
-<div class="quarto-listing quarto-listing-container-default" id="listing-listing">
-<div class="list quarto-listing-default">
-<div class="quarto-post image-right" data-index="0" data-listing-file-modified-sort="1744692251774" data-listing-reading-time-sort="6" data-listing-word-count-sort="1002">
-<div class="thumbnail"><a href="./posts/efficient-data-r/index.html" class="no-external">
-
-<p class="card-img-top"><img src="posts/efficient-data-r/plot2.png" alt="Big Data"  class="thumbnail-image card-img"/></p>
-
-</a></div>
-<div class="body">
-<h3 class="no-anchor listing-title">
-<a href="./posts/efficient-data-r/index.html" class="no-external">Efficient Data wrangling in R</a>
-</h3>
-<div class="delink listing-description"><a href="./posts/efficient-data-r/index.html" class="no-external">
-In the era of big data, R users often find themselves grappling with datasets that push the limits of their hardware. Traditional approaches using packages like tidyverse or…
-</a></div>
-</div>
-<div class="metadata">
-<a href="./posts/efficient-data-r/index.html" class="no-external">
-<div class="listing-author">
-Mohammed Abdallah
-</div>
-</a>
-</div>
-</div>
-<div class="quarto-post image-right" data-index="1" data-categories="UiUyQ1Zpc3VhbGl6YWlvbg==" data-listing-file-modified-sort="1744673346893" data-listing-reading-time-sort="1" data-listing-word-count-sort="131">
-<div class="thumbnail"><a href="./posts/first-blog/index.html" class="no-external">
-
-<p class="card-img-top"><img src="posts/first-blog/plot.png"  class="thumbnail-image card-img"/></p>
-
-</a></div>
-<div class="body">
-<h3 class="no-anchor listing-title">
-<a href="./posts/first-blog/index.html" class="no-external">Demo Blog</a>
-</h3>
-<div class="listing-categories">
-
-<div class="listing-category" onclick="window.quartoListingCategory('Ug=='); return false;">R</div>
-
-<div class="listing-category" onclick="window.quartoListingCategory('VmlzdWFsaXphaW9u'); return false;">Visualizaion</div>
-
-</div>
-<div class="delink listing-description"><a href="./posts/first-blog/index.html" class="no-external">
-Base R plotting is the original graphics system in R, providing a straightforward and flexible approach to data visualization.
-</a></div>
-</div>
-<div class="metadata">
-<a href="./posts/first-blog/index.html" class="no-external">
-<div class="listing-author">
-Mohammed Abdallah
-</div>
-</a>
-</div>
-</div>
-<div class="quarto-post image-right" data-index="2" data-categories="bmV3cyUyQ2NvZGUlMkNhbmFseXNpcw==" data-listing-date-sort="1744527600000" data-listing-file-modified-sort="1744601799667" data-listing-date-modified-sort="NaN" data-listing-reading-time-sort="1" data-listing-word-count-sort="9">
-<div class="thumbnail"><a href="./posts/post-with-code/index.html" class="no-external">
-
-<img loading="lazy" src="./posts/post-with-code/image.jpg" class="thumbnail-image">
-
-</a></div>
-<div class="body">
-<h3 class="no-anchor listing-title">
-<a href="./posts/post-with-code/index.html" class="no-external">Post With Code</a>
-</h3>
-<div class="listing-categories">
-
-<div class="listing-category" onclick="window.quartoListingCategory('bmV3cw=='); return false;">news</div>
-
-<div class="listing-category" onclick="window.quartoListingCategory('Y29kZQ=='); return false;">code</div>
-
-<div class="listing-category" onclick="window.quartoListingCategory('YW5hbHlzaXM='); return false;">analysis</div>
-
-</div>
-<div class="delink listing-description"><a href="./posts/post-with-code/index.html" class="no-external">
-This is a post with executable code.
-</a></div>
-</div>
-<div class="metadata">
-<a href="./posts/post-with-code/index.html" class="no-external">
-<div class="listing-date">
-Apr 13, 2025
-</div>
-<div class="listing-author">
-Harlow Malloc
-</div>
-</a>
-</div>
-</div>
-<div class="quarto-post image-right" data-index="3" data-categories="bmV3cw==" data-listing-date-sort="1744268400000" data-listing-file-modified-sort="1744601799666" data-listing-date-modified-sort="NaN" data-listing-reading-time-sort="1" data-listing-word-count-sort="32">
-<div class="thumbnail"><a href="./posts/welcome/index.html" class="no-external">
-
-<p class="card-img-top"><img src="posts/welcome/thumbnail.jpg"  class="thumbnail-image card-img"/></p>
-
-</a></div>
-<div class="body">
-<h3 class="no-anchor listing-title">
-<a href="./posts/welcome/index.html" class="no-external">Welcome To My Blog</a>
-</h3>
-<div class="listing-categories">
-
-<div class="listing-category" onclick="window.quartoListingCategory('bmV3cw=='); return false;">news</div>
-
-</div>
-<div class="delink listing-description"><a href="./posts/welcome/index.html" class="no-external">
-This is the first post in a Quarto blog. Welcome!
-</a></div>
-</div>
-<div class="metadata">
-<a href="./posts/welcome/index.html" class="no-external">
-<div class="listing-date">
-Apr 10, 2025
-</div>
-<div class="listing-author">
-Tristan O’Malley
-</div>
-</a>
-</div>
-</div>
-</div>
-<div class="listing-no-matching d-none">No matching items</div>
-</div></main> <!-- /main -->
+</main> <!-- /main -->
 <script id="quarto-html-after-body" type="application/javascript">
   window.document.addEventListener("DOMContentLoaded", function (event) {
     const icon = "";
