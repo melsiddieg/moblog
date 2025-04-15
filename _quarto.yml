@@ -3,7 +3,7 @@ project:
   output-dir: docs
 
 website:
-  title: "Mofeed"
+  title: "mofeed.xyz"
   navbar:
     right:
       - about.qmd
@@ -15,8 +15,8 @@ website:
 format:
   html:
     theme:
-      - darkly
-      - brand
+      light: lumen
+      dark: darkly
     css: styles.css
 
 editor: visual
