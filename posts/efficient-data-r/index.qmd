@@ -1,7 +1,7 @@
 ---
 title: "Efficient Data wrangling in R"
 author: "Mohammed Abdallah"
-categories: [big data, polars, duckdb,apache arrow]
+categories: [big data,R, polars, duckdb,apache arrow]
 ---
 
 ![](plot2.png){fig-alt="Big Data"}
