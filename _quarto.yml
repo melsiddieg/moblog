@@ -15,8 +15,9 @@ website:
 format:
   html:
     theme:
-      light: lumen
       dark: darkly
+      light: lumen
+      
     css: styles.css
 
 editor: visual
