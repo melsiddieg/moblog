@@ -1,6 +1,7 @@
 ---
 title: "Efficient Data wrangling in R"
 author: "Mohammed Abdallah"
+date: "2025-04-05"
 categories: [big data,R, polars, duckdb,apache arrow]
 ---
 

@@ -2,14 +2,14 @@
 <html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en"><head>
 
 <meta charset="utf-8">
-<meta name="generator" content="quarto-1.7.23">
+<meta name="generator" content="quarto-1.7.32">
 
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 
-<meta name="author" content="Tristan O’Malley">
-<meta name="dcterms.date" content="2025-04-10">
+<meta name="author" content="Mohammed Abdallah">
+<meta name="dcterms.date" content="2025-12-08">
 
-<title>Welcome To My Blog – mofeed.xyz</title>
+<title>The Year of the Linux Desktop Is Finally Here — But Not for Humans! – mofeed.xyz</title>
 <style>
 code{white-space: pre-wrap;}
 span.smallcaps{font-variant: small-caps;}
@@ -38,12 +38,12 @@ ul.task-list li input[type="checkbox"] {
 <script src="../../site_libs/quarto-html/tippy.umd.min.js"></script>
 <script src="../../site_libs/quarto-html/anchor.min.js"></script>
 <link href="../../site_libs/quarto-html/tippy.css" rel="stylesheet">
-<link href="../../site_libs/quarto-html/quarto-syntax-highlighting-226bd0f977fa82dfae4534cac220d79a.css" rel="stylesheet" class="quarto-color-scheme" id="quarto-text-highlighting-styles">
-<link href="../../site_libs/quarto-html/quarto-syntax-highlighting-dark-7271f29f9498218151f3120baddb7363.css" rel="stylesheet" class="quarto-color-scheme quarto-color-alternate" id="quarto-text-highlighting-styles">
+<link href="../../site_libs/quarto-html/quarto-syntax-highlighting-37eea08aefeeee20ff55810ff984fec1.css" rel="stylesheet" class="quarto-color-scheme" id="quarto-text-highlighting-styles">
+<link href="../../site_libs/quarto-html/quarto-syntax-highlighting-dark-2fef5ea3f8957b3e4ecc936fc74692ca.css" rel="stylesheet" class="quarto-color-scheme quarto-color-alternate" id="quarto-text-highlighting-styles">
 <script src="../../site_libs/bootstrap/bootstrap.min.js"></script>
 <link href="../../site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
-<link href="../../site_libs/bootstrap/bootstrap-269bd1bcfda24cbf750b2716cbc2f1cb.min.css" rel="stylesheet" append-hash="true" class="quarto-color-scheme" id="quarto-bootstrap" data-mode="light">
-<link href="../../site_libs/bootstrap/bootstrap-dark-c236ccd2c1b722de780a3080448e3731.min.css" rel="stylesheet" append-hash="true" class="quarto-color-scheme quarto-color-alternate" id="quarto-bootstrap" data-mode="dark">
+<link href="../../site_libs/bootstrap/bootstrap-d904793c2fe8b9f05fdc73cba6253167.min.css" rel="stylesheet" append-hash="true" class="quarto-color-scheme" id="quarto-bootstrap" data-mode="light">
+<link href="../../site_libs/bootstrap/bootstrap-dark-ccd81253fefb92e9cd3f9eb5b5d87b54.min.css" rel="stylesheet" append-hash="true" class="quarto-color-scheme quarto-color-alternate" id="quarto-bootstrap" data-mode="dark">
 <script id="quarto-search-options" type="application/json">{
   "location": "navbar",
   "copy-button": false,
@@ -94,7 +94,7 @@ ul.task-list li input[type="checkbox"] {
         toggleBodyColorMode(bsSheetEl);
       }
     }
-    window.setColorSchemeToggle = (alternate) => {
+    const setColorSchemeToggle = (alternate) => {
       const toggles = window.document.querySelectorAll('.quarto-color-scheme-toggle');
       for (let i=0; i < toggles.length; i++) {
         const toggle = toggles[i];
@@ -127,7 +127,7 @@ ul.task-list li input[type="checkbox"] {
       }
       manageTransitions('#quarto-margin-sidebar .nav-link', true);
       // Switch the toggles
-      window.setColorSchemeToggle(alternate)
+      setColorSchemeToggle(alternate)
       // Hack to workaround the fact that safari doesn't
       // properly recolor the scrollbar when toggling (#1455)
       if (navigator.userAgent.indexOf('Safari') > 0 && navigator.userAgent.indexOf('Chrome') == -1) {
@@ -167,7 +167,7 @@ ul.task-list li input[type="checkbox"] {
     const isFileUrl = () => {
       return window.location.protocol === 'file:';
     }
-    window.hasAlternateSentinel = () => {
+    const hasAlternateSentinel = () => {
       let styleSentinel = getColorSchemeSentinel();
       if (styleSentinel !== null) {
         return styleSentinel === "alternate";
@@ -195,7 +195,7 @@ ul.task-list li input[type="checkbox"] {
       const baseTheme = document.querySelector('#giscus-base-theme')?.value ?? 'light';
       const alternateTheme = document.querySelector('#giscus-alt-theme')?.value ?? 'dark';
       let newTheme = '';
-      if(darkModeDefault) {
+      if(authorPrefersDark) {
         newTheme = isAlternate ? baseTheme : alternateTheme;
       } else {
         newTheme = isAlternate ? alternateTheme : baseTheme;
@@ -218,18 +218,20 @@ ul.task-list li input[type="checkbox"] {
         changeGiscusTheme();
       }
     };
-    const darkModeDefault = true;
+    const authorPrefersDark = true;
+    const darkModeDefault = authorPrefersDark;
     let localAlternateSentinel = darkModeDefault ? 'alternate' : 'default';
     // Dark / light mode switch
     window.quartoToggleColorScheme = () => {
       // Read the current dark / light value
-      let toAlternate = !window.hasAlternateSentinel();
+      let toAlternate = !hasAlternateSentinel();
       toggleColorMode(toAlternate);
       setStyleSentinel(toAlternate);
       toggleGiscusIfUsed(toAlternate, darkModeDefault);
+      window.dispatchEvent(new Event('resize'));
     };
     // Switch to dark mode if need be
-    if (window.hasAlternateSentinel()) {
+    if (hasAlternateSentinel()) {
       toggleColorMode(true);
     } else {
       toggleColorMode(false);
@@ -277,9 +279,12 @@ ul.task-list li input[type="checkbox"] {
 <header id="title-block-header" class="quarto-title-block default page-columns page-full">
   <div class="quarto-title-banner page-columns page-full">
     <div class="quarto-title column-body">
-      <h1 class="title">Welcome To My Blog</h1>
+      <h1 class="title">The Year of the Linux Desktop Is Finally Here — But Not for Humans!</h1>
                                 <div class="quarto-categories">
-                <div class="quarto-category">news</div>
+                <div class="quarto-category">linux</div>
+                <div class="quarto-category">ai</div>
+                <div class="quarto-category">agents</div>
+                <div class="quarto-category">open-source</div>
               </div>
                   </div>
   </div>
@@ -290,14 +295,14 @@ ul.task-list li input[type="checkbox"] {
       <div>
       <div class="quarto-title-meta-heading">Author</div>
       <div class="quarto-title-meta-contents">
-               <p>Tristan O’Malley </p>
+               <p>Mohammed Abdallah </p>
             </div>
     </div>
       
       <div>
       <div class="quarto-title-meta-heading">Published</div>
       <div class="quarto-title-meta-contents">
-        <p class="date">April 10, 2025</p>
+        <p class="date">December 8, 2025</p>
       </div>
     </div>
     
@@ -317,11 +322,189 @@ ul.task-list li input[type="checkbox"] {
 
 
 
-<p>This is the first post in a Quarto blog. Welcome!</p>
-<p><img src="thumbnail.jpg" class="img-fluid"></p>
-<p>Since this post doesn’t specify an explicit <code>image</code>, the first image in the post will be used in the listing page of posts.</p>
+<p>For decades, the open-source world has asked: <em>“Is this finally the year of the Linux desktop?”</em> For actual humans, the answer always seemed to be “not quite”—until now. The catch? <strong>Linux desktops have finally conquered the world… but as the home turf of AI agents, not people.</strong></p>
+<p>Yes, in the age of superagents—digital workers like OpenAI’s Agent Mode, Manus, TARS, and more—the Linux desktop is having its victory lap. It’s just that the new users don’t need a mouse, a coffee, or a standing desk. They’re <em>AI</em>, and they’ve found their perfect desktop home.</p>
+<p><img src="archon-os-datacenter.jpg" class="img-fluid"></p>
+<section id="the-linux-paradox-invisible-power-visible-absence" class="level2">
+<h2 class="anchored" data-anchor-id="the-linux-paradox-invisible-power-visible-absence">The Linux Paradox: Invisible Power, Visible Absence</h2>
+<p>To understand why this is such a plot twist, you need to appreciate the <em>paradox</em> of Linux: it is <strong>everywhere and nowhere</strong>.</p>
+<ul>
+<li><strong>Linux is the invisible backbone of the internet:</strong> It runs the majority of the world’s servers, powers almost every major website, and forms the core of cloud giants like AWS, Google Cloud, and Azure.</li>
+<li><strong>Supercomputing? It’s Linux.</strong> Over 95% of the world’s fastest supercomputers run on Linux.</li>
+<li><strong>The Cloud? Linux runs the show.</strong> Most virtual machines spun up in the cloud are Linux. When companies deploy at scale, it’s always Linux under the hood.</li>
+<li><strong>Your phone? That’s Linux, too.</strong> Android, the world’s most popular mobile OS, is built on the Linux kernel.</li>
+</ul>
+<p>But despite dominating everywhere else, Linux has always been the <strong>underdog on the personal desktop</strong>. Windows reigns supreme in homes, schools, and businesses. macOS has its loyal fanbase. For the average computer user, the “Linux desktop” is barely visible—unless you’re a developer, a sysadmin, or an academic.</p>
+</section>
+<section id="the-dream-deferred-waiting-for-the-year-of-the-linux-desktop" class="level2">
+<h2 class="anchored" data-anchor-id="the-dream-deferred-waiting-for-the-year-of-the-linux-desktop">The Dream Deferred: Waiting for the Year of the Linux Desktop</h2>
+<p>Ask any Linux enthusiast: <em>The “Year of the Linux Desktop”</em> is practically a meme.</p>
+<ul>
+<li>For 25+ years, advocates believed that any day now, Linux would become the OS of choice for everyone—more stable, more secure, more customizable.</li>
+<li>In reality? Despite huge popularity with developers, hackers, and researchers—and legendary status in universities—Linux never quite broke through with the masses.</li>
+<li>Mainstream adoption always seemed just out of reach, blocked by hardware compatibility, proprietary software, gaming, and the inertia of the Windows world.</li>
+</ul>
+<p>Yet the dream never died. Conferences, blogs, and podcasts would regularly ask: <em>“Is this finally the year?”</em> The answer, year after year, was “not quite.”</p>
+</section>
+<section id="why-ai-agents-choose-linux-and-why-proprietary-oses-are-left-behind" class="level2">
+<h2 class="anchored" data-anchor-id="why-ai-agents-choose-linux-and-why-proprietary-oses-are-left-behind">Why AI Agents Choose Linux (And Why Proprietary OSes Are Left Behind)</h2>
+<p>The reason for this shift isn’t just hype, or tradition, or even ideology. It comes down to <strong>fundamental technical and economic advantages</strong>:</p>
+<section id="open-source-open-world" class="level3">
+<h3 class="anchored" data-anchor-id="open-source-open-world">1. <strong>Open Source, Open World</strong></h3>
+<ul>
+<li><strong>No licensing fees. No legal headaches.</strong> Linux is free at any scale. Spin up 10,000 desktops for agents in the cloud? Nobody’s sending you a bill.</li>
+<li><strong>Hackable by design:</strong> Agents (and their creators) can inspect, modify, or automate any part of the stack, from kernel to GUI. Proprietary OSes simply can’t compete here.</li>
+<li><strong>Infinite extensibility:</strong> If a tool or feature doesn’t exist, you can build it—or the agent can.</li>
+</ul>
+</section>
+<section id="cloud-supremacy" class="level3">
+<h3 class="anchored" data-anchor-id="cloud-supremacy">2. <strong>Cloud Supremacy</strong></h3>
+<ul>
+<li><strong>Linux dominates the cloud.</strong> Every major cloud provider (AWS, GCP, Azure) is optimized for Linux VMs, containers, and orchestration.</li>
+<li>Need to instantly deploy isolated, secure desktops for thousands of agents? Linux is already the backbone.</li>
+<li><strong>No OS is as “cloud native” as Linux.</strong> Licensing for Windows VMs is slow, costly, and restrictive. macOS is barely available outside Apple’s hardware.</li>
+</ul>
+</section>
+<section id="customizability-speed-and-lean-performance" class="level3">
+<h3 class="anchored" data-anchor-id="customizability-speed-and-lean-performance">3. <strong>Customizability, Speed, and Lean Performance</strong></h3>
+<ul>
+<li><strong>Ultra-customizable:</strong> Want a barebones, lightning-fast desktop that boots in seconds and only runs what you need? Linux is built for that.</li>
+<li><strong>No bloat:</strong> Agents don’t care for Cortana, Siri, or animated emojis. Linux offers minimalism and raw speed.</li>
+<li><strong>Fast to spin, low latency:</strong> The agentic revolution depends on spinning up and tearing down environments in milliseconds. Linux delivers this with tiny disk images, lean memory profiles, and true headless operation.</li>
+</ul>
+</section>
+<section id="proven-automation-scriptability" class="level3">
+<h3 class="anchored" data-anchor-id="proven-automation-scriptability">4. <strong>Proven Automation &amp; Scriptability</strong></h3>
+<ul>
+<li><strong>Automation is native:</strong> Agents can automate GUIs, file systems, networking, and even the kernel itself, using decades-old, battle-tested scripting and API frameworks.</li>
+<li><strong>Stable accessibility layers and automation tools:</strong> From DBus to ATK, everything’s accessible, scriptable, and open.</li>
+</ul>
+</section>
+</section>
+<section id="the-rise-of-ai-ready-linux-distros-the-agentic-os-revolution" class="level2">
+<h2 class="anchored" data-anchor-id="the-rise-of-ai-ready-linux-distros-the-agentic-os-revolution">The Rise of AI-Ready Linux Distros: The Agentic OS Revolution</h2>
+<p>The landscape is evolving so quickly that now <strong>specialized Linux distributions are being purpose-built for AI agents themselves</strong>—ushering in a new era of the “Agentic OS”.</p>
+<p><img src="agentic-os-desktop.png" class="img-fluid"></p>
+<ul>
+<li><p><strong>Archon OS</strong> is a leading example: an ultra-lean, AI-native Linux distribution designed from the ground up for agentic use. Archon OS boots in seconds, offers tightly sandboxed environments, and comes pre-equipped with all the APIs and automation tools that superagents demand—no onboarding, no distractions, no bloat.</p>
+<ul>
+<li><em>It’s not about user-friendliness; it’s about agent-efficiency.</em></li>
+<li>With secure, ephemeral sandboxes, these distros enable agents to safely spawn, destroy, and scale their own workspaces—hundreds or thousands at a time.</li>
+</ul></li>
+<li><p>Other spins and projects are following: headless Ubuntu, container-native Debian, cloud-tuned agent images, and more.</p></li>
+<li><p>These new “Agent OSes” are optimized not for human workflows, but for <strong>machine-to-machine automation and agentic orchestration</strong>.</p></li>
+</ul>
+<blockquote class="blockquote">
+<p><strong>Just as Ubuntu and Mint made Linux friendlier for people, Archon OS and its siblings are making Linux frictionless for AI agents. The Agentic OS genre has officially arrived.</strong></p>
+</blockquote>
+</section>
+<section id="the-rise-of-superagents-manus-tars-and-beyond" class="level2">
+<h2 class="anchored" data-anchor-id="the-rise-of-superagents-manus-tars-and-beyond">The Rise of Superagents: Manus, TARS, and Beyond</h2>
+<p>2025 isn’t the year of the human Linux desktop. It’s the year of the <strong>agentic Linux desktop</strong>—the cloud-powered sandbox where AI agents thrive.</p>
+<section id="who-are-these-new-digital-power-users" class="level3">
+<h3 class="anchored" data-anchor-id="who-are-these-new-digital-power-users">Who are these new digital power-users?</h3>
+<section id="openai-agent-mode-operator" class="level4">
+<h4 class="anchored" data-anchor-id="openai-agent-mode-operator"><strong>OpenAI Agent Mode / Operator</strong></h4>
+<p>Runs its own Linux desktop-in-the-cloud, controlling Chrome, LibreOffice, files, and more. Completes multi-step tasks like downloading, editing, and moving documents with no human clicks required.</p>
+</section>
+<section id="anthropics-claude-with-computer-use" class="level4">
+<h4 class="anchored" data-anchor-id="anthropics-claude-with-computer-use"><strong>Anthropic’s Claude with Computer Use</strong></h4>
+<p>Uses Linux sandboxes for visual and API-driven automation, with full access to manipulate GUIs and files.</p>
+</section>
+<section id="manus.im" class="level4">
+<h4 class="anchored" data-anchor-id="manus.im"><strong>Manus.im</strong></h4>
+<p>An open-source, agentic “operating system” for AI agents. Manus spins up dedicated Linux environments so any LLM can automate apps, run workflows, and interact with real software—at scale and at speed.</p>
+</section>
+<section id="tars" class="level4">
+<h4 class="anchored" data-anchor-id="tars"><strong>TARS</strong></h4>
+<p>A generalist superagent inspired by sci-fi, TARS runs in containerized Linux desktops, mastering browsers, spreadsheets, and even legacy apps, all within secure, reproducible Linux VMs.</p>
+</section>
+<section id="other-players-ecosystem-tools" class="level4">
+<h4 class="anchored" data-anchor-id="other-players-ecosystem-tools"><strong>Other Players &amp; Ecosystem Tools</strong></h4>
+<ul>
+<li><strong>ScreenEnv:</strong> Open-source project building virtual Ubuntu desktops for AI agent testing, safely and at scale.</li>
+<li><strong>Linux Foundation Agent Gateway:</strong> Building standards for cross-agent, cross-app Linux integration.</li>
+<li><strong>Academic Projects (ComputerRL, SchedCP):</strong> Advancing agentic automation and reinforcement learning inside Linux GUIs and systems.</li>
+</ul>
+</section>
+</section>
+</section>
+<section id="what-does-this-mean-for-desktop-apps-on-linux" class="level2">
+<h2 class="anchored" data-anchor-id="what-does-this-mean-for-desktop-apps-on-linux">What Does This Mean for Desktop Apps on Linux?</h2>
+<p>If you make desktop software for Linux, your most active users soon may not be people, but <strong>agents</strong>.</p>
+<section id="a-new-kind-of-user" class="level3">
+<h3 class="anchored" data-anchor-id="a-new-kind-of-user"><strong>A New Kind of “User”:</strong></h3>
+<ul>
+<li><strong>Automation is king:</strong> Agents demand robust APIs, headless modes, and stable scripting. If your app can’t be reliably automated, it will be left behind.</li>
+<li><strong>Accessibility and stability matter:</strong> UI elements must be predictable and well-exposed. Fragile GUI automation is a dealbreaker.</li>
+<li><strong>Security and sandboxing:</strong> Agents need just enough access, never more. Fine-grained permissions and logs are now basic hygiene.</li>
+<li><strong>Native support is a must:</strong> Apps with flaky Linux ports will be abandoned for native alternatives, or for open-source clones.</li>
+</ul>
+</section>
+<section id="ux-for-agents-not-humans" class="level3">
+<h3 class="anchored" data-anchor-id="ux-for-agents-not-humans"><strong>UX for Agents (Not Humans):</strong></h3>
+<ul>
+<li>Apps may expose semantic, task-based APIs (“generate a report from these files”) instead of just GUI-driven interfaces.</li>
+<li>Logging, feedback, and “undo” support will be crucial for auditing and safety.</li>
+</ul>
+</section>
+<section id="the-app-developers-dilemma" class="level3">
+<h3 class="anchored" data-anchor-id="the-app-developers-dilemma"><strong>The App Developer’s Dilemma:</strong></h3>
+<blockquote class="blockquote">
+<p>How do you test your app for agents? Start thinking about CI pipelines where your “user” is an AI agent running inside a Linux sandbox!</p>
+</blockquote>
+</section>
+</section>
+<section id="the-surprise-boon-for-linux-apps-libreoffice-gimp-inkscape-beyond" class="level2">
+<h2 class="anchored" data-anchor-id="the-surprise-boon-for-linux-apps-libreoffice-gimp-inkscape-beyond">The Surprise Boon for Linux Apps: LibreOffice, GIMP, Inkscape &amp; Beyond</h2>
+<p>Ironically, the new era of agentic Linux desktops could be the best thing that’s ever happened to open source desktop apps.</p>
+<p><img src="ai-agent-user.png" class="img-fluid"></p>
+<ul>
+<li><p><strong>LibreOffice is now being used by agents as a workhorse for document generation, editing, and automation at unprecedented scale</strong>—not just by humans writing essays, but by superagents assembling reports, forms, and knowledge bases around the clock.</p>
+<ul>
+<li>Every day, LibreOffice Writer, Calc, and Impress are being driven to their limits, automating tasks faster and at greater volume than most human users ever could.</li>
+<li>Agents’ demands are relentless and uncompromising. Even minor bugs, clunky behaviors, or slow performance become immediate bottlenecks at scale—<strong>forcing rapid iteration, bugfixes, and quality improvements.</strong></li>
+</ul></li>
+<li><p><strong>Other Linux apps, too—like Inkscape, GIMP, and countless writing and workflow tools—are getting a second life.</strong></p>
+<ul>
+<li>Agents use GIMP and Inkscape for image generation, conversion, and batch-editing; text tools for automated content creation and formatting.</li>
+<li>Tools that may have lagged behind their proprietary Windows/macOS counterparts are now being “battle-tested” by AI. The “good enough” bar is rising—agents are discovering edge cases, pushing APIs, and exposing bugs that would otherwise stay hidden.</li>
+<li>As agents become power users, open source app developers are gaining new telemetry, feedback, and bug reports at a rate never seen before.</li>
+</ul></li>
+</ul>
+<blockquote class="blockquote">
+<p><strong>What does this mean?</strong> The “AI desktop” could spark an <em>unprecedented renaissance</em> for Linux desktop apps. With agents pushing, breaking, and improving these tools at scale, we may finally see LibreOffice, GIMP, Inkscape and other stalwarts close the gap with (or even leapfrog) proprietary software—not for human polish, but for raw reliability, scriptability, and automation.</p>
+</blockquote>
+</section>
+<section id="why-not-windows-or-mac" class="level2">
+<h2 class="anchored" data-anchor-id="why-not-windows-or-mac">Why Not Windows or Mac?</h2>
+<p><strong>The short version:</strong></p>
+<ul>
+<li><strong>Windows and macOS are locked-down, expensive, and bloated.</strong></li>
+<li>License fees, restrictive virtualization, slow boot times, proprietary protocols, and unpredictable updates all stand in the way of agentic automation.</li>
+<li>The cloud isn’t optimized for them, and neither are AI workflows.</li>
+</ul>
+<p>Agents don’t want branding—they want <em>freedom and speed</em>.</p>
+</section>
+<section id="the-future-the-decade-of-the-agentic-linux-desktop" class="level2">
+<h2 class="anchored" data-anchor-id="the-future-the-decade-of-the-agentic-linux-desktop">The Future: The Decade of the Agentic Linux Desktop</h2>
+<p>From 2025 onward, expect:</p>
+<ul>
+<li><strong>Agent-aware apps:</strong> Major Linux software will ship “agent mode” APIs and automation docs.</li>
+<li><strong>Standardized agent protocols:</strong> Open standards (like Model Context Protocol) will make agentic workflows cross-app and cross-platform.</li>
+<li><strong>Zero-trust security:</strong> Granular sandboxing and permissioning for all agent activities.</li>
+<li><strong>Agent dashboards:</strong> Linux desktops will include visual management tools for agent workflows and activity logs.</li>
+<li><strong>A new breed of distros:</strong> AI-ready, agent-optimized Linux OSes like Archon OS will become the “default” for cloud and automation-driven agent infrastructure.</li>
+</ul>
+</section>
+<section id="the-year-of-the-linux-desktop-has-arrived-for-ai" class="level2">
+<h2 class="anchored" data-anchor-id="the-year-of-the-linux-desktop-has-arrived-for-ai">The Year of the Linux Desktop Has Arrived… For AI</h2>
+<p>So, after decades of waiting, the Linux desktop <em>finally</em> wins—but not in the way anyone predicted. The new power-users are silent, fast, and relentless. They don’t need themes or wallpapers. They need access, speed, and infinite customization. And that’s exactly what Linux delivers.</p>
+<p><strong>For humans, the “year of the Linux desktop” is a meme. For AI agents—and for the distros being built just for them—it’s already a reality.</strong></p>
+<p><em>Want a deep dive on Archon OS, developer tips for agentic app design, or a launch thread? Let me know! This is only the beginning.</em></p>
 
 
+</section>
 
 </main> <!-- /main -->
 <script id="quarto-html-after-body" type="application/javascript">
@@ -338,7 +521,7 @@ ul.task-list li input[type="checkbox"] {
       a.appendChild(i);
       window.document.body.appendChild(a);
     }
-    window.setColorSchemeToggle(window.hasAlternateSentinel())
+    setColorSchemeToggle(hasAlternateSentinel())
     const icon = "";
     const anchorJS = new window.AnchorJS();
     anchorJS.options = {

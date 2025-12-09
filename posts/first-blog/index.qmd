@@ -1,6 +1,7 @@
 ---
 title: "Demo Blog"
 author: "Mohammed Abdallah"
+date: "2025-04-01"
 categories: [R, Visualizaion]
 ---
 
