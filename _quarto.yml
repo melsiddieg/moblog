@@ -4,7 +4,21 @@ project:
 
 website:
   title: "mofeed.xyz"
+  site-url: "https://mofeed.xyz"
+  description: "Data Science, R, and AI Blog"
+  search: true
+  cookie-consent: true
+  
+  open-graph: true
+  twitter-card: true
+  favicon: profile.jpg
+
   google-analytics: "G-7QH7J2JLYY"
+  
+  page-footer:
+    left: "Copyright 2025, Mohammed Abdallah"
+    right: "Powered by [Quarto](https://quarto.org)"
+
   navbar:
     right:
       - about.qmd
