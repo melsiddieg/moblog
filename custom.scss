@@ -1,0 +1,53 @@
+/*-- scss:defaults --*/
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&family=Outfit:wght@500;700&family=JetBrains+Mono&display=swap');
+
+$font-family-sans-serif: 'Inter', sans-serif !default;
+$headings-font-family: 'Outfit', sans-serif !default;
+$font-family-monospace: 'JetBrains Mono', monospace !default;
+
+/*-- scss:rules --*/
+
+// Glassmorphism Navbar
+.navbar {
+  backdrop-filter: blur(10px);
+  background-color: rgba(var(--bs-body-bg-rgb), 0.8) !important;
+  border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+}
+
+// Card styling for Grid Layout
+.quarto-grid-item {
+    border-radius: 12px;
+    transition: transform 0.2s ease, box-shadow 0.2s ease;
+    border: none;
+    overflow: hidden;
+    background: rgba(var(--bs-body-bg-rgb), 0.5);
+    
+    &:hover {
+        transform: translateY(-5px);
+        box-shadow: 0 10px 20px rgba(0,0,0,0.1);
+    }
+    
+    .card-body {
+        padding: 1.5rem;
+    }
+    
+    .card-img-top {
+        border-radius: 12px 12px 0 0;
+    }
+}
+
+// Code blocks
+pre.sourceCode {
+    border-radius: 8px;
+    padding: 1rem;
+}
+
+// Typography polish
+h1, h2, h3, h4, h5, h6 {
+    letter-spacing: -0.02em;
+}
+
+.quarto-title-banner {
+    background: linear-gradient(135deg, var(--bs-primary), var(--bs-info));
+    color: white;
+}

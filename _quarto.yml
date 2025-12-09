@@ -30,8 +30,8 @@ website:
 format:
   html:
     theme:
-      dark: darkly
-      light: lumen
+      dark: [slate, custom.scss]
+      light: [cosmo, custom.scss]
       
     css: styles.css
 
