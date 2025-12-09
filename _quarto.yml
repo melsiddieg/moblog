@@ -5,7 +5,7 @@ project:
 website:
   title: "mofeed.xyz"
   site-url: "https://mofeed.xyz"
-  description: "Data Science, R, and AI Blog"
+  description: "Technology, Data Science, AI, and everything in between"
   search: true
   cookie-consent: true
   

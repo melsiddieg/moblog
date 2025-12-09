@@ -1,5 +1,5 @@
 ---
-title: "A blog about Data Science, Data Engineering, AI, and Healthcare Data Management"
+title: "A blog about technology, data science, AI and all the stuff that intrigues me"
 
 listing:
   contents: posts
