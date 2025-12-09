@@ -78,16 +78,23 @@ h6 {
 
 /* Dark mode specific overrides for contrast */
 body.quarto-dark {
-    color: #f8f9fa;
-    /* Near white for main text */
+    color: #f8f9fa !important;
+    /* Force near white for main text */
+
+    /* Target paragraphs and lists specifically to override theme defaults */
+    p,
+    li,
+    blockquote {
+        color: #f8f9fa !important;
+    }
 
     .text-muted {
-        color: #adb5bd !important;
-        /* Lighter grey for metadata */
+        color: #d0d0d0 !important;
+        /* SIGNIFICANTLY brighter grey (80% white) */
     }
 
     a {
-        color: #6ea8fe;
+        color: #6ea8fe !important;
         /* Brighter blue for links */
     }
 
@@ -97,6 +104,6 @@ body.quarto-dark {
     h4,
     h5,
     h6 {
-        color: #ffffff;
+        color: #ffffff !important;
     }
 }
