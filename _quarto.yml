@@ -9,8 +9,14 @@ website:
   search: true
   cookie-consent: true
   
-  open-graph: true
-  twitter-card: true
+  repo-url: https://github.com/melsiddieg/moblog
+  repo-actions: [edit, issue]
+  page-navigation: true
+  
+  open-graph: 
+    image: profile.jpg
+  twitter-card: 
+    image: profile.jpg
   favicon: profile.jpg
 
   google-analytics: "G-7QH7J2JLYY"

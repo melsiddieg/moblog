@@ -9,9 +9,9 @@ $font-family-monospace: 'JetBrains Mono', monospace !default;
 
 // Glassmorphism Navbar
 .navbar {
-  backdrop-filter: blur(10px);
-  background-color: rgba(var(--bs-body-bg-rgb), 0.8) !important;
-  border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+    backdrop-filter: blur(10px);
+    background-color: rgba(var(--bs-body-bg-rgb), 0.8) !important;
+    border-bottom: 1px solid rgba(255, 255, 255, 0.1);
 }
 
 // Card styling for Grid Layout
@@ -21,16 +21,16 @@ $font-family-monospace: 'JetBrains Mono', monospace !default;
     border: none;
     overflow: hidden;
     background: rgba(var(--bs-body-bg-rgb), 0.5);
-    
+
     &:hover {
         transform: translateY(-5px);
-        box-shadow: 0 10px 20px rgba(0,0,0,0.1);
+        box-shadow: 0 10px 20px rgba(0, 0, 0, 0.1);
     }
-    
+
     .card-body {
         padding: 1.5rem;
     }
-    
+
     .card-img-top {
         border-radius: 12px 12px 0 0;
     }
@@ -43,11 +43,60 @@ pre.sourceCode {
 }
 
 // Typography polish
-h1, h2, h3, h4, h5, h6 {
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
     letter-spacing: -0.02em;
 }
 
 .quarto-title-banner {
     background: linear-gradient(135deg, var(--bs-primary), var(--bs-info));
-    color: white;
+    color: white !important;
+
+    h1,
+    p,
+    .description {
+        color: white !important;
+    }
+}
+
+// Ensure navbar links are visible
+.navbar {
+    backdrop-filter: blur(10px);
+    background-color: rgba(var(--bs-body-bg-rgb), 0.95) !important; // More opaque for better contrast
+    border-bottom: 1px solid rgba(0, 0, 0, 0.05);
+
+    .navbar-brand,
+    .nav-link,
+    .navbar-toggler-icon {
+        color: var(--bs-body-color) !important; // Ensure matches body text (User's issue was likely transparency)
+    }
+}
+
+/* Dark mode specific overrides for contrast */
+body.quarto-dark {
+    color: #f8f9fa;
+    /* Near white for main text */
+
+    .text-muted {
+        color: #adb5bd !important;
+        /* Lighter grey for metadata */
+    }
+
+    a {
+        color: #6ea8fe;
+        /* Brighter blue for links */
+    }
+
+    h1,
+    h2,
+    h3,
+    h4,
+    h5,
+    h6 {
+        color: #ffffff;
+    }
 }

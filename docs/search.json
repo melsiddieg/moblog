@@ -7,18 +7,53 @@
     "text": "Welcome to my blog, a dedicated space where data science, data engineering, and AI meet the complex and fascinating world of healthcare data. Here, I explore the practical and cutting-edge intersections of technologies like R, Python, Apache Arrow, Spark, and various SQL engines (DuckDB, PostgreSQL, Azure SQL Server, and more) with real-world clinical data challenges. Whether it’s structured data extraction from messy EHRs or mapping clinical records into Common Data Models (CDMs) like OMOP, this blog is for practitioners and enthusiasts who care about building scalable, intelligent, and ethical solutions in the healthcare domain.\nI also dive into the evolving space of AI and machine learning in healthcare—especially Retrieval-Augmented Generation (RAG), fine-tuning small language models on domain-specific corpora, and deploying models that respect both data privacy and operational efficiency. From deep dives into Spark-based data pipelines to hands-on tutorials with DuckDB or exploring the nuances of CDM transformations, the content here is designed to balance technical rigor with real-world relevance. Whether you’re a data scientist, engineer, researcher, or just curious about where AI and healthcare data are headed, you’ll find something here to learn, build, and share."
   },
   {
-    "objectID": "posts/first-blog/index.html",
-    "href": "posts/first-blog/index.html",
-    "title": "Demo Blog",
-    "section": "",
-    "text": "base R plot"
+    "objectID": "posts/efficient-data-r/index.html#the-power-of-efficient-file-formats-and-partitioning",
+    "href": "posts/efficient-data-r/index.html#the-power-of-efficient-file-formats-and-partitioning",
+    "title": "Efficient Data wrangling in R",
+    "section": "The Power of Efficient File Formats and Partitioning",
+    "text": "The Power of Efficient File Formats and Partitioning\nBefore diving into specific tools, it’s crucial to understand the importance of efficient file formats and data partitioning.\n\nParquet: The Champion of Big Data\nParquet has become the go-to file format for big data analytics, and for good reason. It’s a columnar storage format that offers excellent compression and supports predicate pushdown, allowing for efficient querying of large datasets. When working with big data in R, converting your data to Parquet can lead to significant performance improvements.\n\n\nPartitioning: Divide and Conquer\nPartitioning is a technique that divides large datasets into smaller, more manageable chunks. This approach enables parallel processing and efficient querying. A common partitioning strategy is to split data by date, creating a directory structure like /year=2023/month=06/data.parquet. This allows you to quickly filter data based on time periods without scanning the entire dataset.\nHere’s a quick example of how you can convert a large CSV file to partitioned Parquet using the Arrow package in R:\nlibrary(arrow)\nlibrary(dplyr)\n\n# Read CSV file\ncsv_dataset &lt;- open_dataset(\"large_dataset.csv\", format = \"csv\")\n\n# Define partitioning schema and write to partitioned Parquet\nwrite_dataset(csv_dataset, \n              \"partitioned_dataset\",\n              format = \"parquet\",\n              partitioning = schema(year = int32(), month = int32()))\nThis code reads a large CSV file and writes it as a partitioned Parquet dataset, organized by year and month."
   },
   {
-    "objectID": "posts/first-blog/index.html#ploting-in-r",
-    "href": "posts/first-blog/index.html#ploting-in-r",
-    "title": "Demo Blog",
-    "section": "Ploting in R",
-    "text": "Ploting in R\nBase R plotting is the original graphics system in R, providing a straightforward and flexible approach to data visualization.\nIt operates on an “artist’s palette” model, where you start with a blank canvas using high-level functions like plot() to create the initial plot, and then incrementally add elements such as points, lines, and text with low-level functions like points(), lines(), and text() .\nThis layered approach allows for detailed customization of plots, enabling users to adjust various aspects such as axes, labels, colors, and symbols to suit their specific needs . While base R plotting may require more manual adjustments compared to newer systems like ggplot2, it remains a powerful tool for creating a wide range of static graphics, from simple scatter plots to complex multi-panel figures\n\nx &lt;- 1:50\ny &lt;- x^2\nplot(x,y,col='darkgreen',pch=20)"
+    "objectID": "posts/efficient-data-r/index.html#arrow-the-swiss-army-knife-of-big-data",
+    "href": "posts/efficient-data-r/index.html#arrow-the-swiss-army-knife-of-big-data",
+    "title": "Efficient Data wrangling in R",
+    "section": "Arrow: The Swiss Army Knife of Big Data",
+    "text": "Arrow: The Swiss Army Knife of Big Data\nApache Arrow is a cross-language development platform for in-memory data, providing a standardized columnar memory format. The Arrow package in R brings this power to the R ecosystem.\n\nKey Features of Arrow:\n\nMemory Mapping: Allows efficient access to data without loading entire datasets into memory.\nSIMD Operations: Utilizes CPU’s Single Instruction, Multiple Data capabilities for faster processing.\nStreaming Execution: Processes data in chunks, reducing memory footprint.\nHere’s an example of using Arrow to efficiently query a partitioned Parquet dataset:\n\nlibrary(arrow)\n\n# Open partitioned dataset\ndataset &lt;- open_dataset(\"partitioned_dataset\", format = \"parquet\")\n\n# Efficient querying with partition and predicate pushdown\nresult &lt;- dataset %&gt;%\n  filter(year == 2023, month == 6) %&gt;%\n  select(col1, col2) %&gt;%\n  collect()\nThis query leverages both partition pruning and predicate pushdown, ensuring that only the necessary data is read and processed."
+  },
+  {
+    "objectID": "posts/efficient-data-r/index.html#polars-speed-and-efficiency-in-r",
+    "href": "posts/efficient-data-r/index.html#polars-speed-and-efficiency-in-r",
+    "title": "Efficient Data wrangling in R",
+    "section": "Polars: Speed and Efficiency in R",
+    "text": "Polars: Speed and Efficiency in R\nPolars is a lightning-fast DataFrames library implemented in Rust, with bindings available for R. It offers both eager and lazy execution modes, providing flexibility and performance.\n\nPolars Lazy Execution:\nPolars’ lazy execution mode allows for query optimization, potentially leading to significant performance improvements. Here’s an example:\nlibrary(polars)\n\n# Create a lazy DataFrame with streaming enabled\nlazy_df &lt;- pl$lazy_csv_reader(\"large_dataset.csv\", rechunk = FALSE)\n\n# Define operations\nresult &lt;- lazy_df$\n  select(pl$col(\"col1\"), pl$col(\"col2\"))$\n  filter(pl$col(\"col1\") &gt; 100)$\n  group_by(\"col2\")$\n  agg(pl$col(\"col1\")$mean())$\n  collect(streaming = TRUE)\nIn this example, Polars optimizes the query plan and uses streaming execution to efficiently process the data."
+  },
+  {
+    "objectID": "posts/efficient-data-r/index.html#duckdb-sql-power-for-local-data",
+    "href": "posts/efficient-data-r/index.html#duckdb-sql-power-for-local-data",
+    "title": "Efficient Data wrangling in R",
+    "section": "DuckDB: SQL Power for Local Data",
+    "text": "DuckDB: SQL Power for Local Data\nDuckDB brings the power of a columnar-oriented SQL database to local, serverless environments. It’s particularly well-suited for analytical queries on large datasets.\n\nDuckDB’s Efficiency:\nDuckDB optimizes for the entire memory hierarchy, from CPU cache to disk. It uses techniques like vectorized execution and adaptive algorithms to process data efficiently. Here’s an example of using DuckDB to query a partitioned Parquet dataset:\nlibrary(duckdb)\nlibrary(dplyr)\n\ncon &lt;- dbConnect(duckdb())\nresult &lt;- tbl(con, \"parquet_scan('partitioned_dataset/**/*.parquet', \n                                 hive_partitioning=1)\") %&gt;%\n  filter(year == 2023, month == 6) %&gt;%\n  select(col1, col2) %&gt;%\n  collect()\n\ndbDisconnect(con, shutdown = TRUE)\nDuckDB automatically detects the partitioning scheme and uses it for efficient data skipping."
+  },
+  {
+    "objectID": "posts/efficient-data-r/index.html#the-importance-of-operation-order",
+    "href": "posts/efficient-data-r/index.html#the-importance-of-operation-order",
+    "title": "Efficient Data wrangling in R",
+    "section": "The Importance of Operation Order",
+    "text": "The Importance of Operation Order\nWhen working with large datasets, the order of operations can significantly impact performance, especially in eager evaluation systems. Consider this example using dplyr:\n# Less efficient\ndf %&gt;%\n  group_by(category) %&gt;%\n  filter(value &gt; 100) %&gt;%\n  summarise(mean_value = mean(value))\n\n# More efficient\ndf %&gt;%\n  filter(value &gt; 100) %&gt;%\n  group_by(category) %&gt;%\n  summarise(mean_value = mean(value))\nIn general, it’s more efficient to filter data before grouping. However, lazy evaluation systems like Polars lazy and DuckDB can often optimize the query plan regardless of the order you specify operations."
+  },
+  {
+    "objectID": "posts/efficient-data-r/index.html#summary-choosing-the-right-tool",
+    "href": "posts/efficient-data-r/index.html#summary-choosing-the-right-tool",
+    "title": "Efficient Data wrangling in R",
+    "section": "Summary: Choosing the Right Tool",
+    "text": "Summary: Choosing the Right Tool\nArrow, Polars, and DuckDB each offer unique strengths for handling large datasets in R:\n\nArrow excels in memory mapping and SIMD operations.\nPolars shines with its lazy evaluation and query optimization.\nDuckDB stands out for its adaptive algorithms and SQL engine"
+  },
+  {
+    "objectID": "posts/efficient-data-r/index.html#takeaways-and-best-practices",
+    "href": "posts/efficient-data-r/index.html#takeaways-and-best-practices",
+    "title": "Efficient Data wrangling in R",
+    "section": "Takeaways and Best Practices",
+    "text": "Takeaways and Best Practices\nWhen working with large datasets in R, consider these best practices:\n\nUse partitioned Parquet for storing large datasets.\nLeverage streaming capabilities to reduce memory footprint.\nUtilize automatic chunking and batch processing when available.\nChoose partitioning schemes that align with common query patterns.\nBenchmark different approaches for your specific use case.\nPay attention to the order of operations, especially in eager evaluation systems\n\nBy employing these advanced techniques and tools, R users can efficiently handle datasets that were once considered too large for local processing. As the R ecosystem continues to evolve, we can expect even more powerful and efficient data handling capabilities in the future.\nHappy data crunching!"
   },
   {
     "objectID": "posts/linux-agentic-desktop/index.html",
@@ -98,53 +133,18 @@
     "text": "The Year of the Linux Desktop Has Arrived… For AI\nSo, after decades of waiting, the Linux desktop finally wins—but not in the way anyone predicted. The new power-users are silent, fast, and relentless. They don’t need themes or wallpapers. They need access, speed, and infinite customization. And that’s exactly what Linux delivers.\nFor humans, the “year of the Linux desktop” is a meme. For AI agents—and for the distros being built just for them—it’s already a reality."
   },
   {
-    "objectID": "posts/efficient-data-r/index.html#the-power-of-efficient-file-formats-and-partitioning",
-    "href": "posts/efficient-data-r/index.html#the-power-of-efficient-file-formats-and-partitioning",
-    "title": "Efficient Data wrangling in R",
-    "section": "The Power of Efficient File Formats and Partitioning",
-    "text": "The Power of Efficient File Formats and Partitioning\nBefore diving into specific tools, it’s crucial to understand the importance of efficient file formats and data partitioning.\n\nParquet: The Champion of Big Data\nParquet has become the go-to file format for big data analytics, and for good reason. It’s a columnar storage format that offers excellent compression and supports predicate pushdown, allowing for efficient querying of large datasets. When working with big data in R, converting your data to Parquet can lead to significant performance improvements.\n\n\nPartitioning: Divide and Conquer\nPartitioning is a technique that divides large datasets into smaller, more manageable chunks. This approach enables parallel processing and efficient querying. A common partitioning strategy is to split data by date, creating a directory structure like /year=2023/month=06/data.parquet. This allows you to quickly filter data based on time periods without scanning the entire dataset.\nHere’s a quick example of how you can convert a large CSV file to partitioned Parquet using the Arrow package in R:\nlibrary(arrow)\nlibrary(dplyr)\n\n# Read CSV file\ncsv_dataset &lt;- open_dataset(\"large_dataset.csv\", format = \"csv\")\n\n# Define partitioning schema and write to partitioned Parquet\nwrite_dataset(csv_dataset, \n              \"partitioned_dataset\",\n              format = \"parquet\",\n              partitioning = schema(year = int32(), month = int32()))\nThis code reads a large CSV file and writes it as a partitioned Parquet dataset, organized by year and month."
+    "objectID": "posts/first-blog/index.html",
+    "href": "posts/first-blog/index.html",
+    "title": "Demo Blog",
+    "section": "",
+    "text": "base R plot"
   },
   {
-    "objectID": "posts/efficient-data-r/index.html#arrow-the-swiss-army-knife-of-big-data",
-    "href": "posts/efficient-data-r/index.html#arrow-the-swiss-army-knife-of-big-data",
-    "title": "Efficient Data wrangling in R",
-    "section": "Arrow: The Swiss Army Knife of Big Data",
-    "text": "Arrow: The Swiss Army Knife of Big Data\nApache Arrow is a cross-language development platform for in-memory data, providing a standardized columnar memory format. The Arrow package in R brings this power to the R ecosystem.\n\nKey Features of Arrow:\n\nMemory Mapping: Allows efficient access to data without loading entire datasets into memory.\nSIMD Operations: Utilizes CPU’s Single Instruction, Multiple Data capabilities for faster processing.\nStreaming Execution: Processes data in chunks, reducing memory footprint.\nHere’s an example of using Arrow to efficiently query a partitioned Parquet dataset:\n\nlibrary(arrow)\n\n# Open partitioned dataset\ndataset &lt;- open_dataset(\"partitioned_dataset\", format = \"parquet\")\n\n# Efficient querying with partition and predicate pushdown\nresult &lt;- dataset %&gt;%\n  filter(year == 2023, month == 6) %&gt;%\n  select(col1, col2) %&gt;%\n  collect()\nThis query leverages both partition pruning and predicate pushdown, ensuring that only the necessary data is read and processed."
-  },
-  {
-    "objectID": "posts/efficient-data-r/index.html#polars-speed-and-efficiency-in-r",
-    "href": "posts/efficient-data-r/index.html#polars-speed-and-efficiency-in-r",
-    "title": "Efficient Data wrangling in R",
-    "section": "Polars: Speed and Efficiency in R",
-    "text": "Polars: Speed and Efficiency in R\nPolars is a lightning-fast DataFrames library implemented in Rust, with bindings available for R. It offers both eager and lazy execution modes, providing flexibility and performance.\n\nPolars Lazy Execution:\nPolars’ lazy execution mode allows for query optimization, potentially leading to significant performance improvements. Here’s an example:\nlibrary(polars)\n\n# Create a lazy DataFrame with streaming enabled\nlazy_df &lt;- pl$lazy_csv_reader(\"large_dataset.csv\", rechunk = FALSE)\n\n# Define operations\nresult &lt;- lazy_df$\n  select(pl$col(\"col1\"), pl$col(\"col2\"))$\n  filter(pl$col(\"col1\") &gt; 100)$\n  group_by(\"col2\")$\n  agg(pl$col(\"col1\")$mean())$\n  collect(streaming = TRUE)\nIn this example, Polars optimizes the query plan and uses streaming execution to efficiently process the data."
-  },
-  {
-    "objectID": "posts/efficient-data-r/index.html#duckdb-sql-power-for-local-data",
-    "href": "posts/efficient-data-r/index.html#duckdb-sql-power-for-local-data",
-    "title": "Efficient Data wrangling in R",
-    "section": "DuckDB: SQL Power for Local Data",
-    "text": "DuckDB: SQL Power for Local Data\nDuckDB brings the power of a columnar-oriented SQL database to local, serverless environments. It’s particularly well-suited for analytical queries on large datasets.\n\nDuckDB’s Efficiency:\nDuckDB optimizes for the entire memory hierarchy, from CPU cache to disk. It uses techniques like vectorized execution and adaptive algorithms to process data efficiently. Here’s an example of using DuckDB to query a partitioned Parquet dataset:\nlibrary(duckdb)\nlibrary(dplyr)\n\ncon &lt;- dbConnect(duckdb())\nresult &lt;- tbl(con, \"parquet_scan('partitioned_dataset/**/*.parquet', \n                                 hive_partitioning=1)\") %&gt;%\n  filter(year == 2023, month == 6) %&gt;%\n  select(col1, col2) %&gt;%\n  collect()\n\ndbDisconnect(con, shutdown = TRUE)\nDuckDB automatically detects the partitioning scheme and uses it for efficient data skipping."
-  },
-  {
-    "objectID": "posts/efficient-data-r/index.html#the-importance-of-operation-order",
-    "href": "posts/efficient-data-r/index.html#the-importance-of-operation-order",
-    "title": "Efficient Data wrangling in R",
-    "section": "The Importance of Operation Order",
-    "text": "The Importance of Operation Order\nWhen working with large datasets, the order of operations can significantly impact performance, especially in eager evaluation systems. Consider this example using dplyr:\n# Less efficient\ndf %&gt;%\n  group_by(category) %&gt;%\n  filter(value &gt; 100) %&gt;%\n  summarise(mean_value = mean(value))\n\n# More efficient\ndf %&gt;%\n  filter(value &gt; 100) %&gt;%\n  group_by(category) %&gt;%\n  summarise(mean_value = mean(value))\nIn general, it’s more efficient to filter data before grouping. However, lazy evaluation systems like Polars lazy and DuckDB can often optimize the query plan regardless of the order you specify operations."
-  },
-  {
-    "objectID": "posts/efficient-data-r/index.html#summary-choosing-the-right-tool",
-    "href": "posts/efficient-data-r/index.html#summary-choosing-the-right-tool",
-    "title": "Efficient Data wrangling in R",
-    "section": "Summary: Choosing the Right Tool",
-    "text": "Summary: Choosing the Right Tool\nArrow, Polars, and DuckDB each offer unique strengths for handling large datasets in R:\n\nArrow excels in memory mapping and SIMD operations.\nPolars shines with its lazy evaluation and query optimization.\nDuckDB stands out for its adaptive algorithms and SQL engine"
-  },
-  {
-    "objectID": "posts/efficient-data-r/index.html#takeaways-and-best-practices",
-    "href": "posts/efficient-data-r/index.html#takeaways-and-best-practices",
-    "title": "Efficient Data wrangling in R",
-    "section": "Takeaways and Best Practices",
-    "text": "Takeaways and Best Practices\nWhen working with large datasets in R, consider these best practices:\n\nUse partitioned Parquet for storing large datasets.\nLeverage streaming capabilities to reduce memory footprint.\nUtilize automatic chunking and batch processing when available.\nChoose partitioning schemes that align with common query patterns.\nBenchmark different approaches for your specific use case.\nPay attention to the order of operations, especially in eager evaluation systems\n\nBy employing these advanced techniques and tools, R users can efficiently handle datasets that were once considered too large for local processing. As the R ecosystem continues to evolve, we can expect even more powerful and efficient data handling capabilities in the future.\nHappy data crunching!"
+    "objectID": "posts/first-blog/index.html#ploting-in-r",
+    "href": "posts/first-blog/index.html#ploting-in-r",
+    "title": "Demo Blog",
+    "section": "Ploting in R",
+    "text": "Ploting in R\nBase R plotting is the original graphics system in R, providing a straightforward and flexible approach to data visualization.\nIt operates on an “artist’s palette” model, where you start with a blank canvas using high-level functions like plot() to create the initial plot, and then incrementally add elements such as points, lines, and text with low-level functions like points(), lines(), and text() .\nThis layered approach allows for detailed customization of plots, enabling users to adjust various aspects such as axes, labels, colors, and symbols to suit their specific needs . While base R plotting may require more manual adjustments compared to newer systems like ggplot2, it remains a powerful tool for creating a wide range of static graphics, from simple scatter plots to complex multi-panel figures\n\nx &lt;- 1:50\ny &lt;- x^2\nplot(x,y,col='darkgreen',pch=20)"
   },
   {
     "objectID": "index.html",
