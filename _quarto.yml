@@ -4,6 +4,7 @@ project:
 
 website:
   title: "mofeed.xyz"
+  google-analytics: "G-7QH7J2JLYY"
   navbar:
     right:
       - about.qmd
